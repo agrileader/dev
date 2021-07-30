@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+	<Resource
+		name="jdbc/pool_cnx"
+		driverClassName="com.mysql.cj.jdbc.Driver"
+		type="javax.sql.DataSource"
+		
+		url="jdbc:mysql://192.168.1.219:3306/engrais_france"
+		username="agrileader"
+		password="Agrileader50%"
+		
+		maxTotal="100"
+		maxIdle="30"
+		MaxWaitMillis="10000"
+		
+		unloadDelay="2500"
+		/>
+</Context>

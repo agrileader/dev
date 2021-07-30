@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+.ie678 .row > * {
+	margin-left: 50px;
+	margin-right: 50px;
+}
+.ie678 .col-sm-3 {
+	width: 250px;
+}
+.ie678 .form-control {
+	height: 35px;
+	font-size: 25px;
+}
+
+.ie678 .navbar-toggler {
+	display: none;
+}
+
+.ie678 .mt-2 {
+	margin-top: 15px;
+}
+
+.ie678 .d-none {
+	display: none;
+}
+
+.ie678 .btn-primary {
+	background-image: url("../img/icons/search.png");
+	background-color: rgb(25,135,84);
+	background-repeat: no-repeat;
+	background-position: center top;
+	width: 350px;
+	height: 35px;
+}
+
+.ie678 .navbar-brand {
+	font-size: 42px;
+	color: rgb(25,135,84);
+	display: block;
+	background-color: rgb(49,49,49);
+	padding-left: 25px;
+}
+
+.ie678 .table-responsive {
+	margin: 0;
+}

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+	<display-name>Engrais France</display-name>
+	<description>
+    	Comparatif des prix pour l'engrais dans toute la France !
+    </description>
+    
+    <context-param>
+    	<param-name>Florent Etendard</param-name>
+      	<param-value>florent.e@agrileader.fr</param-value>
+      	<description>
+	        L'adresse mail de l'administrateur et créateur
+	    </description>
+    </context-param>
+  
+  	<!--============================================================
+  	    ======================= Servlets's configuration ===============
+  	    ============================================================-->
+	
+	<!-- Index -->
+	<servlet>
+		<servlet-name>Index</servlet-name>
+		<servlet-class>fr.engraisfrance.servlet.ServletIndex</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Index</servlet-name>
+		<url-pattern>/engrais-au-meilleur-prix</url-pattern>
+		<url-pattern></url-pattern>
+	</servlet-mapping>
+	
+	<!-- Back Office -->
+	<servlet>
+		<servlet-name>BackOffice</servlet-name>					   
+		<servlet-class>fr.engraisfrance.core.backoffice.servlet.ServletBackOffice</servlet-class>
+	</servlet>
+	
+  	<servlet-mapping>
+		<servlet-name>BackOffice</servlet-name>
+		<url-pattern>/BackOffice</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Connexion -->
+	<servlet>
+		<servlet-name>Connexion</servlet-name>
+		<servlet-class>fr.engraisfrance.core.connexion.servlet.ServletConnexion</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Connexion</servlet-name>
+		<url-pattern>/Connexion</url-pattern>
+	</servlet-mapping>
+	  	    
+  	<!--============================================================
+  	    ======================= Application's Filters===============
+  	    ============================================================-->		
+	
+	<!-- Character Filter -->
+	<filter>
+		<filter-name>CharacterSetFilter</filter-name>
+		<filter-class>fr.engraisfrance.beans.CharacterSetFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+	    <filter-name>CharacterSetFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	    <dispatcher>REQUEST</dispatcher>
+	    <dispatcher>FORWARD</dispatcher>
+	    <dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+	
+	<!-- Connexion Filter --> 	
+	<filter>
+		<filter-name>FiltreConnexion</filter-name>
+		<filter-class>fr.engraisfrance.core.connexion.filtre.FiltreConnexion</filter-class>				
+	</filter>
+			
+	<filter-mapping>
+		<filter-name>FiltreConnexion</filter-name>
+		<url-pattern>/BackOffice/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+ 	 
+ 	<!--============================================================
+  	    ======================= Page's errors===============
+  	    ============================================================-->
+  	<error-page>
+    	<error-code>500</error-code>
+        <location>/WEB-INF/errors/erreur500.jsp</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>403</error-code>
+		<location>/WEB-INF/errors/erreur403.jsp</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/errors/erreur404.jsp</location>
+	</error-page>
+	
+	<!--============================================================
+  	    ======================= JSP's configuration===============
+  	    ============================================================-->
+	<jsp-config>
+  		<jsp-property-group>
+    		<url-pattern>*.jsp</url-pattern>
+    		<page-encoding>UTF-8</page-encoding>
+  		</jsp-property-group>
+  		
+  		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<include-prelude>/WEB-INF/taglibs.jsp</include-prelude>
+		</jsp-property-group>
+	</jsp-config>
+</web-app>
