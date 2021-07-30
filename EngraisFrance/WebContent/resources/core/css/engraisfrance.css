@@ -2,6 +2,8 @@
 
 body {
 	font-size: 16px;
+	background: #ececec;
+	font-family: 'Poppins', sans-serif;
 }
 
 /*****************************
@@ -28,6 +30,7 @@ body {
  
 #container-comparaison .comparaison-titre {
 	text-align: center;
+	background: red;
 }
 
 #container-comparaison .comparaison-map {
