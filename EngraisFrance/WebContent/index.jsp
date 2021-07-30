@@ -16,6 +16,7 @@
 	</section>
 </c:if>
 
+
 <!-- Section comparaison -->
 <section id="container-comparaison" class="container mt-5">
 	<div class="row g-4">
