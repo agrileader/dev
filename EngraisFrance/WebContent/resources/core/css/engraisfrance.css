@@ -25,11 +25,9 @@ body {
 	font-size: 36px;
 	font-weight: bolder;	
 }
- 
 #container-comparaison .comparaison-titre {
 	text-align: center;
 }
-
 #container-comparaison .comparaison-map {
 	max-width: 600px;	
 }
@@ -39,7 +37,6 @@ body {
     width : 320px;    
 	z-index: 50;
 }
-
 #container-comparaison #legende {
 	font-size: 12px;
 	color: #990000;
