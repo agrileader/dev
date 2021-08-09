@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="fr.engraisfrance.messages.LecteurMessage" %>
 
 <!--[if lte IE 7]> <html class="ie67 ie678" lang="fr"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="fr-FR"> <!--<![endif]-->
@@ -40,14 +41,14 @@
 		<!-- CSS -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-		<link rel="stylesheet" href="resources/core/css/engraisfrance.css" media="screen">
-		
+		<link rel="stylesheet" href="resources/core/css/engraisfrance.css" media="screen">		
 		<!--[if lte IE 7]><link rel="stylesheet" href="resources/core/css/engraisfrance_ie.css" media="screen"><![endif]-->
 		
 		<!-- JS -->		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>		
-		<script src="resources/core/js/France-map.js"></script>		
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>						
+		<script src="resources/core/js/engraisfrance.js"></script>
+		<script src="resources/modules/franceMap/js/France-map.js"></script>
 	</head>
 	
 	<!-- BODY -->
@@ -64,7 +65,7 @@
 				<!-- Barre  -->
 				<div class="row">
 					<div class="col-12 col-lg-4 offset-lg-4 py-5">
-				    	<h1 class="section-title text-center"><a href="engrais-au-meilleur-prix" title="Retourner sur la page d'acceuil">Engrais France</a></h1>				    	
+				    	<h1 class="section-title text-center"><a href="<c:url value='/Engrais-au-meilleur-prix' />" title="Retourner sur la page d'acceuil">Engrais France</a></h1>				    	
 	   				</div>
 	   				<div class="col-12 col-lg-2 offset-lg-2 py-3">
 	   					<div class="section-user">
@@ -73,7 +74,7 @@
 						    		<a href="#" class="nav-link" aria-current="page" title="Voir le panier"><i class="bi bi-cart pe-2"></i></a>						    		
 						  		</li>
 					  			<li class="nav-item">
-						    		<a href="Connexion" class="nav-link" title="Accéder à votre compte client"><i class="bi bi-person ps-2"></i></a>
+						    		<a href="<c:url value='/Connexion' />" class="nav-link" title="Accéder à votre compte client"><i class="bi bi-person ps-2"></i></a>
 						  		</li>						  
 							</ul>	   						 	   						
 	   					</div>
@@ -81,3 +82,43 @@
 		  		</div>
 	  		</div>	
 		</header>
+			
+		<c:if test="${ ! empty listeErreur }">
+			<!--==============================================================
+			================= Ligne d'erreur =================================
+			===============================================================-->
+			<section class="container-fluid mt-0 my-0">
+				<div class="row alert alert-danger listeErreur" role="alert">
+					<ul class="list-group list-group-flush">
+						<c:forEach items="${requestScope.listeErreur}" var="item">
+							<li class="list-group-item">
+								${LecteurMessage.getMessageErreur(item) } 
+							</li>
+						</c:forEach>				
+					</ul>	
+				</div>
+			</section>
+		</c:if>
+		
+		<c:if test="${ ! empty succes }">			
+			<!--==============================================================
+			================= Message en cas de succès ==================
+			===============================================================-->
+			<section id="container-success" class="container-fluid mt-0 my-0">
+				<div class="row alert alert-success" role="alert">
+					<p class="text-center">${succes_message }</p>
+				</div>
+			</section>
+		</c:if>
+		
+		<!-- Top navigation -->
+		<div class="topnav">
+			<!-- Centered link -->
+		  	<nav style="--bs-breadcrumb-divider: '>';" class="topnav-centered" aria-label="breadcrumb">
+		  		<ol class="breadcrumb">
+			  		<c:forEach items="${fn:split(currentUrl,'/') }" var="page_url" varStatus="loop">
+			    		<li class="breadcrumb-item <c:if test="${loop.last.equals('page_url') }" >active</c:if>">${page_url }</li>
+		    		</c:forEach>
+	    		</ol>
+		  	</nav>
+		</div>

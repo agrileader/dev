@@ -1,43 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="false"%>
     
-<%@ page import="fr.engraisfrance.messages.LecteurMessage" %>
-
 <%@ include file="/inc/header.jsp" %>
 
 <section class="container">
-	<!--==============================================================
-	================= Ligne d'erreur =================================
-	===============================================================-->	
-	<c:if test="${ ! empty listeErreur }">
-		<div class="row">
-			<div class="col alert alert-danger listeErreur" role="alert">
-				<ul>
-					<c:forEach items="${listeErreur}" var="item">
-						<li>
-							${LecteurMessage.getMessageErreur(item) } 
-						</li>
-					</c:forEach>				
-				</ul>
-			</div>
-		</div>
-	</c:if>
 				
 	<!--==============================================================
-	================= Ligne de reussite =================================
-	===============================================================-->
-	
+	================= Si l'utilisateur est connecté ==================
+	===============================================================-->	
 	<c:if test="${ ! empty user }">
 		<div class="row my-5">
 			<div class="col alert alert-primary" role="alert">
 				<h2>Bienvenue <strong>${user.getNom()} ${user.getPrenom()}</strong></h2>  
 				<p>Votre adresse email : ${user.getCoordonnee().getEmail() }</p>
-				<a class="btn btn-primary" href="BackOffice" role="button">Accèder au back office</a>
-				<a class="btn btn-secondary" href="#" role="button">Se déconnecter</a>
+				<c:forEach items="${user_role }" var="role">					
+					<c:if test="${role.getCode().equals('ADM') || role.getCode.equals('SPV') || role.getCode.equals('COM')}">
+						<a href="<c:url value='/BackOffice' />" class="btn btn-primary" role="button">Accèder au back office</a>					
+					</c:if>
+				</c:forEach> 
+				
+				
+				<form action="Connexion" method="POST">
+					<input type="hidden" name="etat_connexion" value="deconnexion" />
+					<button type="submit" class="btn btn-secondary mt-2">Se déconnecter</button>
+				</form>
 			</div>
 		</div>
 	</c:if>
 	
+	<!--==============================================================
+	================= Si l'utilisateur est déconnecté =================================
+	===============================================================-->	
 	<c:if test="${ empty user}">
 		<div class="row align-items-center">
 			<div class="col">
@@ -52,7 +45,9 @@
 					  	<label for="floatingPassword">Mot de passe</label>
 					</div>
 					<div class="forget-password col-md-8 col-lg-3 mx-auto">
-						<p class="text-end"><a href="#" title="Mot de passe oublié" class="">Mot de passe oublié ?</a></p>
+						<p class="text-end">
+							<a href="#" title="Mot de passe oublié" class="">Mot de passe oublié ?</a>
+						</p>
 					</div>
 					<div class="col-3 mx-auto mt-5">
 						<button type="submit" class="btn btn-primary btn-lg" >Envoyer</button>

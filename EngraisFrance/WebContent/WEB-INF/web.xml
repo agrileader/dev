@@ -25,7 +25,7 @@
 	
 	<servlet-mapping>
 		<servlet-name>Index</servlet-name>
-		<url-pattern>/engrais-au-meilleur-prix</url-pattern>
+		<url-pattern>/Engrais-au-meilleur-prix</url-pattern>
 		<url-pattern></url-pattern>
 	</servlet-mapping>
 	
@@ -50,6 +50,18 @@
 		<servlet-name>Connexion</servlet-name>
 		<url-pattern>/Connexion</url-pattern>
 	</servlet-mapping>
+	
+	<!-- Produit -->
+	<!-- Produit en backoffice -->
+	<servlet>
+		<servlet-name>BackOfficeProduit</servlet-name>
+		<servlet-class>fr.engraisfrance.core.produit.servlet.ServletProduitBackoffice</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>BackOfficeProduit</servlet-name>
+		<url-pattern>/BackOffice/Produit</url-pattern>
+	</servlet-mapping>	  	    
 	  	    
   	<!--============================================================
   	    ======================= Application's Filters===============
@@ -69,8 +81,11 @@
 	    <dispatcher>INCLUDE</dispatcher>
 	</filter-mapping>
 	
+	<!--============================================================
+  	    ======================= FILTRES ===============
+  	    ============================================================-->
 	<!-- Connexion Filter --> 	
-	<filter>
+	<!-- <filter>
 		<filter-name>FiltreConnexion</filter-name>
 		<filter-class>fr.engraisfrance.core.connexion.filtre.FiltreConnexion</filter-class>				
 	</filter>
@@ -81,8 +96,22 @@
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
-	</filter-mapping>
+	</filter-mapping> -->
  	 
+ 	<!-- BackOffice Filter --> 	
+	<filter>
+		<filter-name>FiltreBackOffice</filter-name>
+		<filter-class>fr.engraisfrance.core.connexion.filtre.FiltreBackOffice</filter-class>				
+	</filter>
+			
+	<filter-mapping>
+		<filter-name>FiltreBackOffice</filter-name>
+		<url-pattern>/BackOffice/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+	
  	<!--============================================================
   	    ======================= Page's errors===============
   	    ============================================================-->

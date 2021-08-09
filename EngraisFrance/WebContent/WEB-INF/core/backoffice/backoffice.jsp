@@ -1,28 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="fr.engraisfrance.messages.LecteurMessage" %>
-
 <%@ include file="/inc/header.jsp" %>
 
-<section class="container-fluid">
-	<!--==============================================================
-	================= Ligne d'erreur =================================
-	===============================================================-->	
-	<c:if test="${!empty requestScope.listeErreur }">
-		<div class="row">
-			<div class="col alert alert-danger listeErreur" role="alert">
-				<ul>
-					<c:forEach items="${requestScope.listeErreur}" var="item">
-						<li>
-							${LecteurMessage.getMessageErreur(item) } 
-						</li>
-					</c:forEach>				
-				</ul>
-			</div>
-		</div>
-	</c:if>
-	
+<section class="container">
 	<!--============================================================== 
 	================= Main Page =====================
 	===============================================================-->
