@@ -62,7 +62,18 @@
 		<servlet-name>BackOfficeProduit</servlet-name>
 		<url-pattern>/BackOffice/Produit</url-pattern>
 	</servlet-mapping>	  	    
-	  	    
+	
+	<!-- Produit -->
+	<servlet>
+		<servlet-name>ProduitComparer</servlet-name>
+		<servlet-class>fr.engraisfrance.core.produit.servlet.ServletProduitComparer</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ProduitComparer</servlet-name>
+		<url-pattern>/ProduitComparer</url-pattern>
+	</servlet-mapping>	  	   
+	  	    -->
   	<!--============================================================
   	    ======================= Application's Filters===============
   	    ============================================================-->		

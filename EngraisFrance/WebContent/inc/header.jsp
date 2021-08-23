@@ -42,12 +42,15 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 		<link rel="stylesheet" href="resources/core/css/engraisfrance.css" media="screen">		
+		<link rel="stylesheet" href="resources/core/produit/css/produit.css" media="screen">
+		
 		<!--[if lte IE 7]><link rel="stylesheet" href="resources/core/css/engraisfrance_ie.css" media="screen"><![endif]-->
 		
 		<!-- JS -->		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>						
 		<script src="resources/core/js/engraisfrance.js"></script>
+		<script src="resources/core/produit/js/produit_ajax.js"></script>
 		<script src="resources/modules/franceMap/js/France-map.js"></script>
 	</head>
 	
@@ -83,19 +86,27 @@
 	  		</div>	
 		</header>
 			
+		<!-- Top navigation -->
+		<div class="topnav">
+			<!-- Centered link -->
+		  	<nav style="--bs-breadcrumb-divider: '>';" class="topnav-centered" aria-label="breadcrumb">
+		  		<ol class="breadcrumb">
+			  		<c:forEach items="${fn:split(currentUrl,'/') }" var="page_url" varStatus="loop">
+			    		<li class="breadcrumb-item <c:if test="${loop.last.equals('page_url') }" >active</c:if>">${page_url }</li>
+		    		</c:forEach>
+	    		</ol>
+		  	</nav>
+		</div>
+		
 		<c:if test="${ ! empty listeErreur }">
 			<!--==============================================================
 			================= Ligne d'erreur =================================
 			===============================================================-->
 			<section class="container-fluid mt-0 my-0">
 				<div class="row alert alert-danger listeErreur" role="alert">
-					<ul class="list-group list-group-flush">
-						<c:forEach items="${requestScope.listeErreur}" var="item">
-							<li class="list-group-item">
-								${LecteurMessage.getMessageErreur(item) } 
-							</li>
-						</c:forEach>				
-					</ul>	
+					<c:forEach items="${requestScope.listeErreur}" var="item">
+						${LecteurMessage.getMessageErreur(item) } <br />
+					</c:forEach>				
 				</div>
 			</section>
 		</c:if>
@@ -110,15 +121,3 @@
 				</div>
 			</section>
 		</c:if>
-		
-		<!-- Top navigation -->
-		<div class="topnav">
-			<!-- Centered link -->
-		  	<nav style="--bs-breadcrumb-divider: '>';" class="topnav-centered" aria-label="breadcrumb">
-		  		<ol class="breadcrumb">
-			  		<c:forEach items="${fn:split(currentUrl,'/') }" var="page_url" varStatus="loop">
-			    		<li class="breadcrumb-item <c:if test="${loop.last.equals('page_url') }" >active</c:if>">${page_url }</li>
-		    		</c:forEach>
-	    		</ol>
-		  	</nav>
-		</div>
