@@ -14,11 +14,10 @@
 				<h2>Bienvenue <strong>${user.getNom()} ${user.getPrenom()}</strong></h2>  
 				<p>Votre adresse email : ${user.getCoordonnee().getEmail() }</p>
 				<c:forEach items="${user_role }" var="role">					
-					<c:if test="${role.getCode().equals('ADM') || role.getCode.equals('SPV') || role.getCode.equals('COM')}">
+					<c:if test="${role.getCode().equals('ADM') || role.getCode().equals('SPV') || role.getCode().equals('COM')}">
 						<a href="<c:url value='/BackOffice' />" class="btn btn-primary" role="button">Accèder au back office</a>					
 					</c:if>
-				</c:forEach> 
-				
+				</c:forEach> 				
 				
 				<form action="Connexion" method="POST">
 					<input type="hidden" name="etat_connexion" value="deconnexion" />
