@@ -26,7 +26,7 @@
 					</c:forEach>
 				</c:when>
 				<c:when test="${nb_commune > 1}">
-					<select id="select_commune" name="select_commune" class="form-select" aria-label="Choix de la commune" onchange="executerRequete()">
+					<select id="select_commune" name="select_commune" class="form-select" aria-label="Choix de la commune" onchange="comparerProduit()">
 						<option value="">Veuillez selectionner votre commune...</option>
 						<c:forEach var="commune" items="${communes}">
 							<option value="${commune.getId() }">${commune.getLibelle()}</option>							

@@ -72,8 +72,9 @@
 	<servlet-mapping>
 		<servlet-name>ProduitComparer</servlet-name>
 		<url-pattern>/ProduitComparer</url-pattern>
-	</servlet-mapping>	  	   
-	  	    -->
+	</servlet-mapping>
+	
+	
   	<!--============================================================
   	    ======================= Application's Filters===============
   	    ============================================================-->		
