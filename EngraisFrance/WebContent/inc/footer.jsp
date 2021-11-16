@@ -8,7 +8,7 @@
 						<img class="img-fluid" src="${core_resources }img/logo/agrileader-logo.png" alt="Logo Agrileader" />
 					</a>
 					<p class="mt-1">
-						Présente à <strong>Saint-Lô</strong> sur le siège de l'entreprise ainsi qu’à <strong>Lyon</strong>, une équipe de conseillers commerciaux répond à distance à vos questions et <strong>passe vos commandes</strong>. Répartis en France métropolitaine, nos points de vente vous accueillent également pour <strong>répondre à vos besoins</strong>.
+						Présente à <strong>Saint-Lô</strong> sur le siège de l'entreprise ainsi qu’à <strong>Lyon</strong>, une équipe de conseillers commerciaux répond à distance à vos questions et <strong>passe vos cvvvommandes</strong>. Répartis en France métropolitaine, nos points de vente vous accueillent également pour <strong>répondre à vos besoins</strong>.
 						N° Agrément : BN00363 pour l'activité <strong>Distribution de produits phytopharmaceutiques</strong> à des professionnels
 					</p>
 				</div>
