@@ -3,26 +3,14 @@
 
 <%@ include file="inc/header.jsp" %>
 
-<c:if test="${not empty(listeErreur) }">
-	<!-- Section affichage des erreurs -->
-	<section id="container-erreur" class="container-fluid mt-0">
-		<div class="row g-4 alert alert-danger" role="alert">
-			<ul>				
-				<c:forEach var="err" items="${listeErreur }">
-					<li>${err }</li>
-				</c:forEach>					
-			</ul>
-		</div>
-	</section>
-</c:if>
-
 <!-- Section comparaison -->
 <section id="container-comparaison" class="container mt-5">
 	<div class="row g-4">
 		<h2 class="comparaison-titre">Rechercher le meilleur prix pour l'engrais</h2>
 		<div class="col-12 col-lg-4 offset-lg-4 section-engrais-agricole">			
-			<form method="post" action="engrais-au-meilleur-prix" class="input-group input-group-lg mb-3">
-				<input type="text" name="code_postal" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Mon code postal...">
+			<form method="post" action="<c:url value='/Engrais-au-meilleur-prix' />" class="input-group input-group-lg mb-3">
+				<input type="text" name="code_postal" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Mon code postal..." 
+					<c:if test="${not empty cp }">value="${cp }"</c:if> />
 				<button class="btn btn-lg btn-outline-secondary" type="submit" id="button-addon2">Rechercher</button>
 			</form>				
 			
@@ -34,13 +22,14 @@
 				</c:when>
 				<c:when test="${nb_commune == 1}">
 					<c:forEach var="commune" items="${communes}">
-						<p>Une ville "${commune.getLibelle()}" a été trouvée avec ce code postal !</p>
+						<h4 class="text-center">${commune.getLibelle()}</h4>
 					</c:forEach>
 				</c:when>
 				<c:when test="${nb_commune > 1}">
-					<select name="select_commune" class="form-select" aria-label="Choix de la commune">
+					<select id="select_commune" name="select_commune" class="form-select" aria-label="Choix de la commune" onchange="comparerProduit()">
+						<option value="">Veuillez selectionner votre commune...</option>
 						<c:forEach var="commune" items="${communes}">
-							<option value="${commune.getId() }">Commune : ${commune.getLibelle()}</option>							
+							<option value="${commune.getId() }">${commune.getLibelle()}</option>							
 						</c:forEach>
 					</select>
 				</c:when>
@@ -49,13 +38,21 @@
 	</div>	
 	
 	<div class="row">
-		<div class="comparaison-map mx-auto mt-2 mb-2">
+		<div class="comparaison-map col-4 offset-2 my-5">
 			<div id="legende"></div>
 			<map name="map" >
 				<area id="carte-france"></area> 
 			</map>
-			<img id="canvasMap" src="${core_resources }img/trans.gif" usemap="#map" alt="Carte de comparaison France" />
+			<img id="canvasMap" src="${modules_resources }franceMap/img/trans.gif" usemap="#map" alt="Carte de comparaison France" />
 			<canvas id="canvas">Mettez à jour votre navigateur Internet !</canvas>
+		</div>
+		<!-- AJAX & ServletIndex -->
+		<div id="comparaison-resultat" class="col-4 my-5">
+			<c:if test="${isIndex }">				
+				<jsp:include page="/WEB-INF/core/produit/inc/produitComparer.jsp">
+		            <jsp:param name="produitComparer" value="${produitComparer }"/>
+		        </jsp:include>
+			</c:if>
 		</div>	
 	</div>
 </section>
